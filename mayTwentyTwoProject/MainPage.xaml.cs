@@ -337,7 +337,6 @@ namespace DodgeGameAlonKolyakov
             LayoutRoot.Children.Clear();
             rectangleEnemy.Clear();
 
-            // gb = new GameBoard(DodgeGameFromJson.numOfEnemies, DodgeGameFromJson.health, myScore, enemySpawned, enemiesLoad, BoniLoad);
             LayoutSettingsDesign();
             gb.UserLifeIndex();
             gb.Boni = BoniLoad;
