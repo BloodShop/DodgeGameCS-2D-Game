@@ -52,7 +52,6 @@ namespace DodgeGameAlonKolyakov
         protected Rectangle LoadRectangle(int type)
         {
             Rectangle tempRect = new Rectangle()
-            #region
             {
                 RadiusX = _radius,
                 RadiusY = _radius,
@@ -83,7 +82,6 @@ namespace DodgeGameAlonKolyakov
 
             Canvas.SetLeft(tempRect, _x);
             Canvas.SetTop(tempRect, _y);
-            #endregion
             return tempRect;
         }
     }

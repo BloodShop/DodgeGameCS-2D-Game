@@ -10,12 +10,6 @@ namespace DodgeGameAlonKolyakov
     public class Enemy : Character
     {
         public const int id = 2;
-        //[JsonConstructor]
-        //public Enemy(int _x, int _y, bool isAlive, int _width, int _height, int _radius, int _speed) :
-        //    base(_x, _y, isAlive, _width, _height, _radius, _speed)
-        //{
-        //    this.rect = NewRectangle();
-        //}
         public Enemy(int _width, int _height, int _x, int _y, int _speed) :
             base(_width, _height, _x , _y, _speed)
         {
@@ -60,64 +54,6 @@ namespace DodgeGameAlonKolyakov
                 this._y -= _speed;
             Canvas.SetTop(this.rect, this._y);
             Canvas.SetLeft(this.rect, this._x);
-
-            #region Tring to catch the next step of the User
-            //if (!NextStepCollision(user/*, out int xNew, out int yNew)*/)) // if there isnt collision in the next step
-            //{
-            //    tb = null;
-            //}
-            //else // there is collision next step that we checked
-            //{
-            //    //Canvas.SetTop(enemyEllipse, this._y);
-            //    //Canvas.SetLeft(enemyEllipse, this._x);
-            //    tb = new TextBlock()
-            //    {
-            //        Text = "YOU LOST!",
-            //        TextAlignment = Windows.UI.Xaml.TextAlignment.Center,
-            //        FontFamily = new Windows.UI.Xaml.Media.FontFamily("Ariel"),
-            //        FontStyle = Windows.UI.Text.FontStyle.Italic,
-            //        Foreground = new SolidColorBrush(Windows.UI.Colors.Black)
-            //    };
-            //    if (this._x + this._radius < user._x + user._radius / 2)
-            //        this._x += _speed / 2;
-            //    else
-            //        this._x -= _speed / 2;
-
-            //    if (this._y + this._radius / 2 < user._y + user._radius / 2)
-            //        this._y += _speed / 2;
-            //    else
-            //        this._y -= _speed / 2;
-
-            //    Canvas.SetTop(this.ellipse, this._y);
-            //    Canvas.SetLeft(this.ellipse, this._x);
-            //    //Canvas.SetTop(this.ellipse, yNew);
-            //    //Canvas.SetLeft(this.ellipse, xNew);
-            //}
-            #endregion
         }
-        #region NEXT STEP COLLISION
-        //public bool NextStepCollision(Character character/*, out int xNew, out int yNew*/)
-        //{
-        //    int xSum = (this._x - character._x);
-        //    int ySum = (this._y - character._y);
-        //    double differenceDistance = Math.Sqrt(Math.Pow(xSum, 2) + Math.Pow(ySum, 2));
-
-        //    if (differenceDistance <= this._radius + character._radius)
-        //    {
-        //        if (character is Player)
-        //        {
-
-        //        }
-        //        //double distanceRadiusRr = Math.Sqrt(Math.Pow(user._radius, 2) + Math.Pow(this._radius, 2));
-        //        //differenceDistance = this._radius + user._radius;
-        //        //xNew = this._x + (int)Math.Cos(distanceRadiusRr - differenceDistance);
-        //        //yNew = this._y + (int)Math.Sin(distanceRadiusRr - differenceDistance);
-        //        return true;
-        //    }
-        //    //xNew = -1;
-        //    //yNew = -1;
-        //    return false;
-        //}
-        #endregion
     }
 }

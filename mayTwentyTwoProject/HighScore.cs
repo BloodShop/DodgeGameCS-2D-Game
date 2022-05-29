@@ -10,7 +10,7 @@ namespace DodgeGameAlonKolyakov
         public static async void CreateFile()
         {
             try
-            {
+            {  // saves to a local folder at the mainPage you can track the debug that tells you the path where the file is
                 await storageFolder.CreateFileAsync("AlonDodgeGameUWP.txt", CreationCollisionOption.OpenIfExists);  
             }
             catch { }

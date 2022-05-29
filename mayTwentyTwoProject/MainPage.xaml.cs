@@ -56,10 +56,12 @@ namespace DodgeGameAlonKolyakov
 
             Window.Current.CoreWindow.SizeChanged += Current_SizeChanged;
             Window.Current.CoreWindow.KeyDown += SettingBtns_KeyDown;
+
             #region windowSize change debug
             LayoutRoot.SizeChanged += (sender, args) => { Debug.WriteLine($"{DateTime.Now.Ticks} Grid size changed, layout update triggered."); };
             Window.Current.SizeChanged += (sender, args) => { Debug.WriteLine($"{DateTime.Now.Ticks} Window size changed."); };
             #endregion
+
             StartingBackGround();
         }
         private void SetTimers()
@@ -550,13 +552,8 @@ namespace DodgeGameAlonKolyakov
             var appFolder = ApplicationData.Current.LocalFolder;
             var file = await appFolder.CreateFileAsync("exposure.txt", CreationCollisionOption.OpenIfExists);
             await FileIO.WriteTextAsync(file, textToSave);
-
+           // Track where the file is located
             Debug.WriteLine(String.Format($"File is located at {file.Path}"));
         }
-        #region Json
-        // Saving by string custom
-        //var serializedCharaters = JsonConvert.SerializeObject(jsonFromString);
-        //var serializedCharaters = JsonConvert.SerializeObject(jsonFromString/*can be string and also an object*/, Formatting.Indented);
-        #endregion
     }
 }

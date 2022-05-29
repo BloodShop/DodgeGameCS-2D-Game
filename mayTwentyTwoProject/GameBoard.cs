@@ -95,6 +95,7 @@ namespace DodgeGameAlonKolyakov
             Canvas.SetLeft(tbScore, MainPage.windowRectangle.Width / 2 - tbScore.Width / 2);
             Canvas.SetTop(tbScore, 15);
         }
+
         //[JsonConstructor] // Characters FORM
         //public GameBoard(int numOfEnemies, int health, int score, int enemySpawned, List<Character> characters)
         //{
@@ -118,6 +119,7 @@ namespace DodgeGameAlonKolyakov
         //    Canvas.SetLeft(tbScore, MainPage.windowRectangle.Width / 2 - tbScore.Width / 2);
         //    Canvas.SetTop(tbScore, 15);
         //}
+
         public GameBoard(int boardWidth, int boardHeight)
         {
             _boardHeight = boardHeight;
@@ -158,23 +160,24 @@ namespace DodgeGameAlonKolyakov
         #endregion
         public void AddCharacter(int characterWidth, int characterHeight, int xLocation, int yLocation, int speedCharacter, int type)
         {
-            if (type == 1)
+            switch (type)
             {
-                Character player = new Player(characterWidth, characterHeight, xLocation, yLocation, speedCharacter);
-                characters.Add((Player)player);
-                Boni = (Player)player;
-            }
-            else if (type == 2)
-            {
-                Character enemy = new Enemy(characterWidth, characterHeight, xLocation, yLocation, speedCharacter);
-                characters.Add(enemy);        // characters list
-                enemies.Add((Enemy)enemy);    // ENEMIES LIST
-            }
-            else if (type == 3)
-            {
-                Character coin = new Coin(characterWidth, characterHeight, xLocation, yLocation);
-                characters.Add(coin);
-                coins.Add((Coin)coin);      // COIN LIST
+                case 1: // Player
+                    Character player = new Player(characterWidth, characterHeight, xLocation, yLocation, speedCharacter);
+                    characters.Add((Player)player);
+                    Boni = (Player)player;
+                    break;
+                case 2: // Enemies
+                    Character enemy = new Enemy(characterWidth, characterHeight, xLocation, yLocation, speedCharacter);
+                    characters.Add(enemy);        
+                    enemies.Add((Enemy)enemy);    
+                    break;
+                case 3: // Coins
+                    Character coin = new Coin(characterWidth, characterHeight, xLocation, yLocation);
+                    characters.Add(coin);
+                    coins.Add((Coin)coin);      
+                    break;
+
             }
         }
 
@@ -260,7 +263,7 @@ namespace DodgeGameAlonKolyakov
             return false;
         }
         public bool EnemyCollisionWith_EachOther(out int indexI/*, out int indexJ*/)
-        {
+        { // the indexJ is if I would like to collapse also the second enemy
             for (int i = 0; i < MainPage.rectangleEnemy.Count; i++)
                 for (int j = 0; j < MainPage.rectangleEnemy.Count; j++)
                     if (enemies[i].isAlive && enemies[j].isAlive && j != i)
@@ -339,20 +342,12 @@ namespace DodgeGameAlonKolyakov
         public bool Victory(out Rectangle tbVictory)
         {
             int countOfDeadEnemies = 0;
-            //foreach (Rectangle rect in MainPage.rectangleEnemy)
-            //    if (rect != null)
-            //        countOfEnemies++;
             foreach (Enemy enemyAlive in enemies)
                 if (!enemyAlive.isAlive && MainPage.enemySpawned == numOfEnemies)
                     countOfDeadEnemies++;
             if (countOfDeadEnemies == numOfEnemies || countOfDeadEnemies == numOfEnemies - 1)
             {
-                tbVictory = new Rectangle()
-                {
-                    Height = MainPage.windowRectangle.Height,
-                    Width = MainPage.windowRectangle.Width,
-                    Fill = new ImageBrush { ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Images/victory.jpg")) }
-                };
+                tbVictory = new Rectangle() { Height = MainPage.windowRectangle.Height, Width = MainPage.windowRectangle.Width, Fill = new ImageBrush { ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Images/victory.jpg")) } };
                 Canvas.SetTop(tbVictory,0); Canvas.SetLeft(tbVictory,0);
                 MainPage.lvlEnded = true;
                 MainPage.gameStarted = false;

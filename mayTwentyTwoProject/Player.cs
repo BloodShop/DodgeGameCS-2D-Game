@@ -13,13 +13,6 @@ namespace DodgeGameAlonKolyakov
     public class Player : Character
     {
         public const int id = 1;
-        //[JsonConstructor]
-        //public Player(int _x, int _y, bool isAlive, int _width, int _height, int _radius, int _speed) :
-        //    base(_x, _y, isAlive, _width, _height, _radius, _speed)
-        //{
-        //    this.rect = NewRectangle();
-        //    this.type = id;
-        //}
         public Player(int _width, int _height, int _x, int _y,int _speed) :
             base(_width, _height, _x, _y, _speed) 
         {
